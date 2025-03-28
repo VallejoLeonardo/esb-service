@@ -8,17 +8,18 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 public class WebClientConfig {
     
-    @Value("${CLIENTES_API_URL:http://localhost:7000}")
+    @Value("${CLIENTES_API_URL}")
     private String clientesApiUrl;
 
-    @Value("${USERS_API_URL:http://localhost:5000}")
+    @Value("${USERS_API_URL}")
     private String usersApiUrl;
 
-    @Value("${EMAIL_API_URL:http://localhost:8000}")
+    @Value("${EMAIL_API_URL}")
     private String emailApiUrl;
     
     @Bean
     public WebClient usersWebClient() {
+        System.out.println("Configurando usersWebClient con URL: " + usersApiUrl);
         return WebClient.builder()
                 .baseUrl(usersApiUrl)
                 .build();
@@ -26,6 +27,7 @@ public class WebClientConfig {
     
     @Bean
     public WebClient clientesWebClient() {
+        System.out.println("Configurando clientesWebClient con URL: " + clientesApiUrl);
         return WebClient.builder()
                 .baseUrl(clientesApiUrl)
                 .build();
@@ -33,6 +35,7 @@ public class WebClientConfig {
     
     @Bean
     public WebClient emailWebClient() {
+        System.out.println("Configurando emailWebClient con URL: " + emailApiUrl);
         return WebClient.builder()
                 .baseUrl(emailApiUrl)
                 .build();
